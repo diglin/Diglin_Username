@@ -1,6 +1,6 @@
 # Diglin_Username #
 
-Magento module which allow your customers to use a username and not only the email address
+Magento module which allows your customers to use a username and not only the email address as identifier
 
 ## Features
 
