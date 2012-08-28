@@ -2,7 +2,8 @@
 
 Magento module which allow your customers to use a username and not only the email address
 
-## Features ##
+## Features
+
 - Login with a username and/or email, it can be done from frontend during checkout or getting access to the customer account
 - Save a username from frontend (register account or checkout process) or from backend by editing a customer account
 - Check that the username doesn't already exists
@@ -15,28 +16,35 @@ Magento module which allow your customers to use a username and not only the ema
 - Allow or not the customer to edit the username in My Account in frontend
 - Compatible and tested with Magento version >=1.4.2 until 1.7.x
 
-## Documentation ##
+## Installation
 
-- Installation: copy the files from the folders to the same folders of your installation
+- You can install the current stable version via [MagentoConnect](http://www.magentocommerce.com/magento-connect/username-support-login-register-checkout-by-diglin.html)
+- Or you can copy the files from the folders of this repository to the same folders of your installation
+
+## Documentation
+
 - Please, configure the module go to the backend and follow the menu System > Configuration > Diglin > Username
 - You can put the username into your email template, you can put the following string {{var customer.username}} in the email templates: account_new.html and account_new_confirmation.html
 - If you have a 404 error page, try to login/logout and go back to the configuration page. Or save again the Administrator role in System > Permissions > Role
 - IMPORTANT NOTE: check if you want to have the customer account global or per website, see in System > Configuration > Customers > Customer Configuration > Account Sharing Options
+  If set to "Per website", the username will be unique per each website
+  If set to "Global", the username will be unique for the whole website
 
-If set to "Per website", the username will be unique per each website
-
-If set to "Global", the username will be unique for the whole website
-
-## Important ##
+## Important
 
 If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username. The process may be long during the installation.
 
-## Deinstall ##
+## Deinstall
 
-If you want to deinstall this module, use the deinstall process of the Magento Connect Backend page view of your Magento installation. Then get access to your database and do the followings queries:
+- If you used MagentoConnect, you may use the deinstall process of the Magento Connect Backend page view of your Magento installation. 
+- Otherwise remove the files following the hierarchy of the folders of this repository
+- Then get access to your database and do the followings queries:
+  Do the following sql query in your database after to have done a backup, please check the table name with your database:
 
-Do the following sql query in your database after to have done a backup, please check the table name with your database:
-`DELETE FROM eav_attribute WHERE attribute_code LIKE '%username%'; ALTER TABLE sales_flat_quote DROP COLUMN 'customer_username'; ALTER TABLE sales_flat_order DROP COLUMN 'customer_username';`
+`DELETE FROM eav_attribute WHERE attribute_code LIKE '%username%';`
+`ALTER TABLE sales_flat_quote DROP COLUMN 'customer_username';`
+`ALTER TABLE sales_flat_order DROP COLUMN 'customer_username';`
+
 It's important to know if you create account from the backend, check which Website where you want to save the account
 
 ## Author
@@ -45,3 +53,7 @@ It's important to know if you create account from the backend, check which Websi
 * http://www.sylvainraye.com/
 * [@sylvainraye](https://twitter.com/sylvainraye)
 * [Follow me on github!](https://github.com/diglin)
+ 
+## Donation
+
+[Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
