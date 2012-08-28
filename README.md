@@ -27,7 +27,7 @@ If set to "Per website", the username will be unique per each website
 
 If set to "Global", the username will be unique for the whole website
 
-## Important ## 
+## Important ##
 
 If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username. The process may be long during the installation.
 
