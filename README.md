@@ -1,6 +1,6 @@
 # Diglin_Username #
 
-## Magento module which allow your customers to use a username and not only the email address ##
+Magento module which allow your customers to use a username and not only the email address
 
 ## Features ##
 - Login with a username and/or email, it can be done from frontend during checkout or getting access to the customer account
