@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Diglin_Username>
+			<active>true</active>
+			<codePool>community</codePool>
+			<depends>
+				<Mage_Customer />
+			</depends>
+		</Diglin_Username>
+	</modules>
+</config>
