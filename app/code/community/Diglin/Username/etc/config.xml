@@ -77,6 +77,11 @@
                     <customer>Diglin_Username_Model_Entity_Customer</customer>
                 </rewrite>
             </customer_resource>
+            <importexport>
+                <rewrite>
+                    <import_entity_customer>Diglin_Username_Model_Import_Entity_Customer</import_entity_customer>
+                </rewrite>
+            </importexport>
         </models>
 
         <resources>

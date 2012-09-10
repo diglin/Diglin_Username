@@ -22,7 +22,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
         }
         return $data;
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see Mage_Customer_Model_Form::validateData()
@@ -40,7 +40,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                     ->getRequest()
                     ->getParam('id');
             }
-            
+
             if (isset($data['website_id']) && $data['website_id'] !== false) {
                 $websiteId = $data['website_id'];
             } elseif ($customerId) {
@@ -52,7 +52,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
             } else {
                 $websiteId = Mage::app()->getWebsite()->getId();
             }
-            
+
             $validate = new Zend_Validate_Regex('/^[\w-]*$/');
             if(Mage::getStoreConfig('username/general/input_validation') == 'default' && ! $validate->isValid($data['username']) ){
                 $message = Mage::helper('username')->__('Username is invalid! Only letters, digits and \'_-\' values are accepted.');
@@ -61,11 +61,11 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 }
                 $errors = array_merge($errors, array($message));
             }
-            
+
             $result = $model->customerUsernameExists($data['username'], $websiteId);
             if ($result && $result->getId() != Mage::app()->getFrontController()
                 ->getRequest()
-                ->getParam('id') && $result->getId() != Mage::getSingleton('customer/session')->getCustomerId('id')) {
+                ->getParam('id') && $result->getId() != $customerId) {
                 $message = Mage::helper('username')->__("Username already exists");
                 if ($errors === true) {
                     $errors = array();
