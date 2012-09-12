@@ -13,6 +13,7 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
      * Gather and save information about customer entities.
      *
      * Diglin: make is_active for new customer importeable
+     * clst: make is_active updateable for existing customers
      *
      * @return Mage_ImportExport_Model_Import_Entity_Customer
      */
@@ -43,7 +44,8 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
                                         ? 0 : $this->_storeCodeToId[$rowData[self::COL_STORE]],
                         'created_at' => empty($rowData['created_at'])
                                         ? now() : gmstrftime($strftimeFormat, strtotime($rowData['created_at'])),
-                        'updated_at' => now()
+                        'updated_at' => now(),
+                        'is_active'  => empty($rowData['is_active']) ? 1 : $this->_attributes['is_active']['options'][$rowData['is_active']]
                     );
                     if (isset($this->_oldCustomers[$rowData[self::COL_EMAIL]][$rowData[self::COL_WEBSITE]])) { // edit
                         $entityId = $this->_oldCustomers[$rowData[self::COL_EMAIL]][$rowData[self::COL_WEBSITE]];
@@ -56,7 +58,6 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
                         $entityRow['attribute_set_id'] = 0;
                         $entityRow['website_id']       = $this->_websiteCodeToId[$rowData[self::COL_WEBSITE]];
                         $entityRow['email']            = $rowData[self::COL_EMAIL];
-                        $entityRow['is_active']        = $this->_attributes['is_active']['options'][$rowData['is_active']];
                         $entityRowsIn[]                = $entityRow;
 
                         $this->_newCustomers[$rowData[self::COL_EMAIL]][$rowData[self::COL_WEBSITE]] = $entityId;
@@ -93,4 +94,29 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
         }
         return $this;
     }
+    
+    /**
+     * Update and insert data in entity table.
+     * 
+     * clst: make is_active updateable for existing customers
+     *
+     * @param array $entityRowsIn Row for insert
+     * @param array $entityRowsUp Row for update
+     * @return Mage_ImportExport_Model_Import_Entity_Customer
+     */
+    protected function _saveCustomerEntity(array $entityRowsIn, array $entityRowsUp)
+    {
+        if ($entityRowsIn) {
+            $this->_connection->insertMultiple($this->_entityTable, $entityRowsIn);
+        }
+        if ($entityRowsUp) {
+            $this->_connection->insertOnDuplicate(
+                $this->_entityTable,
+                $entityRowsUp,
+                array('group_id', 'store_id', 'updated_at', 'created_at', 'is_active')
+            );
+        }
+        return $this;
+    }
+
 }
