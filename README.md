@@ -18,8 +18,15 @@ Magento module which allows your customers to use a username and not only the em
 
 ## Installation
 
+### Via Magento Connect
 - You can install the current stable version via [MagentoConnect](http://www.magentocommerce.com/magento-connect/username-support-login-register-checkout-by-diglin.html)
-- Or you can copy the files from the folders of this repository to the same folders of your installation
+
+### Via modman
+- Install [modman](https://github.com/colinmollenhour/modman)
+- Use the command from your Magento installation folder: `modman clone https://github.com/diglin/Diglin_Username.git`
+
+### Manually
+- You can copy the files from the folders of this repository to the same folders of your installation
 
 ## Documentation
 
@@ -36,7 +43,7 @@ If you have an important quantity of customers in your database, please try this
 
 ## Deinstall
 
-- If you used MagentoConnect, you may use the deinstall process of the Magento Connect Backend page view of your Magento installation. 
+- If you used MagentoConnect, you may use the deinstall process of the Magento Connect Backend page view of your Magento installation.
 - Otherwise remove the files following the hierarchy of the folders of this repository
 - Then get access to your database and do the followings queries:
   Do the following sql query in your database after to have done a backup, please check the table name with your database:
@@ -53,7 +60,7 @@ It's important to know if you create account from the backend, check which Websi
 * http://www.sylvainraye.com/
 * [@sylvainraye](https://twitter.com/sylvainraye)
 * [Follow me on github!](https://github.com/diglin)
- 
+
 ## Donation
 
 [Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
