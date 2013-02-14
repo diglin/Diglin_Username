@@ -45,7 +45,7 @@ class Diglin_Username_Model_Entity_Customer extends Mage_Customer_Model_Entity_C
      */
     public function loadByUsername(Mage_Customer_Model_Customer $customer, $username)
     {
-        if (Mage::getStoreConfigFlag('username/general/force_tolower')) {
+        if (!Mage::getStoreConfigFlag('username/general/force_tolower')) {
             $filter = new Zend_Filter_StringToLower(array('encoding' => 'UTF-8'));
             $username = $filter->filter($username);
         }
