@@ -13,6 +13,7 @@
                 <max_length>30</max_length>
                 <min_length>6</min_length>
                 <input_validation>default</input_validation>
+                <force_tolower>1</force_tolower>
             </general>
          </username>
     </default>

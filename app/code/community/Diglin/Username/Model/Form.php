@@ -16,7 +16,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
     public function extractData (Zend_Controller_Request_Http $request, $scope = null, $scopeOnly = true)
     {
         $data = parent::extractData($request, $scope, $scopeOnly);
-        if(isset($data['username'])) {
+        if(isset($data['username']) && Mage::getStoreConfigFlag('username/general/force_tolower')) {
             $filter = new Zend_Filter_StringToLower(array('encoding' => 'UTF-8'));
             $data['username'] = $filter->filter($data['username']);
         }

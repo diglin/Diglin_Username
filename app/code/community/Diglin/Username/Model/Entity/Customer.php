@@ -45,8 +45,10 @@ class Diglin_Username_Model_Entity_Customer extends Mage_Customer_Model_Entity_C
      */
     public function loadByUsername(Mage_Customer_Model_Customer $customer, $username)
     {
-        $filter = new Zend_Filter_StringToLower(array('encoding' => 'UTF-8'));
-        $username = $filter->filter($username);
+        if (Mage::getStoreConfigFlag('username/general/force_tolower')) {
+            $filter = new Zend_Filter_StringToLower(array('encoding' => 'UTF-8'));
+            $username = $filter->filter($username);
+        }
         $select = $this->_getReadAdapter()->select()
             ->from($this->getEntityTable(), array($this->getEntityIdField()))
             ->joinNatural(array('cev' => $this->getTable('customer_entity_varchar')))
