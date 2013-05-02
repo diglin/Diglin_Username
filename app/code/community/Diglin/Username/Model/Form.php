@@ -63,9 +63,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
             }
 
             $result = $model->customerUsernameExists($data['username'], $websiteId);
-            if ($result && $result->getId() != Mage::app()->getFrontController()
-                ->getRequest()
-                ->getParam('id') && $result->getId() != $customerId) {
+            if ($result && !empty($customerId) && $result->getId() != $customerId) {
                 $message = Mage::helper('username')->__("Username already exists");
                 if ($errors === true) {
                     $errors = array();
