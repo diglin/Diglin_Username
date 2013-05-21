@@ -56,22 +56,20 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 $websiteId = Mage::app()->getWebsite()->getId();
             }
 
+            if ($errors === true) {
+                $errors = array();
+            }
+
             // Other rules are validated by the parent class because they are basic rules provided by Magento Core
             $validate = new Zend_Validate_Regex('/^[\w-]*$/');
             if(Mage::getStoreConfig('username/general/input_validation') == 'default' && ! $validate->isValid($data['username']) ){
                 $message = Mage::helper('username')->__('Username is invalid! Only letters, digits and \'_-\' values are accepted.');
-                if ($errors === true) {
-                    $errors = array();
-                }
                 $errors = array_merge($errors, array($message));
             }
 
             $result = $model->customerUsernameExists($data['username'], $websiteId);
-            if ($result && !empty($customerId) && $result->getId() != $customerId) {
+            if ($result && $result->getId() != $customerId) {
                 $message = Mage::helper('username')->__('Username already exists');
-                if ($errors === true) {
-                    $errors = array();
-                }
                 $errors = array_merge($errors, array($message));
             }
         }
