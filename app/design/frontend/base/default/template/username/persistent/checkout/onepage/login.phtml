@@ -1,6 +1,6 @@
 <?php
 /**
- * Diglin
+ * Magento
  *
  * NOTICE OF LICENSE
  *
@@ -18,14 +18,20 @@
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magentocommerce.com for more information.
  *
- * @category    Diglin
- * @package     Diglin_Username
+ * @category    design
+ * @package     base_default
  * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php /* Extensions placeholder */ ?>
-<?php echo $this->getChildHtml('checkout.onepage.login.extra')?>
+<?php
+/**
+ * Customer onepage checkout login form template
+ *
+ * @see app/design/frontend/base/default/template/checkout/onepage/login.phtml
+ */
+/** @var $this Mage_Checkout_Block_Onepage_Login */
+?>
 <div class="col2-set">
     <?php echo $this->getChildHtml('login_before')?>
     <div class="col-1">
@@ -82,7 +88,9 @@
                     </div>
                 </li>
                 <?php echo $this->getChildHtml('form.additional.info'); ?>
+                <?php echo $this->getChildHtml('persistent.remember.me'); ?>
             </ul>
+            <input name="context" type="hidden" value="checkout" />
         </fieldset>
         </form>
     </div>
@@ -91,7 +99,15 @@
     <div class="col-1">
         <div class="buttons-set">
             <p class="required">&nbsp;</p>
-            <button type="button" class="button" onclick="checkout.setMethod();"><span><span><?php echo ($this->getQuote()->isAllowedGuestCheckout() ? $this->__('Continue') : $this->__('Register')) ?></span></span></button>
+            <?php if ($this->getQuote()->isAllowedGuestCheckout()): ?>
+                <button id="onepage-guest-register-button" type="button" class="button" onclick="checkout.setMethod();"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+            <?php elseif ($this->helper('checkout')->isCustomerMustBeLogged()): ?>
+                <button id="onepage-guest-register-button" type="button" class="button" onclick="window.location='<?php echo $this->helper('checkout/url')->getRegistrationUrl();?>'"><span><span><?php echo $this->__('Register') ?></span></span></button>
+            <?php else: ?>
+                <form action="<?php echo $this->getUrl('persistent/index/saveMethod'); ?>">
+                    <button id="onepage-guest-register-button" type="submit" class="button"><span><span><?php echo $this->__('Register') ?></span></span></button>
+                </form>
+            <?php endif; ?>
         </div>
     </div>
     <div class="col-2">
@@ -130,3 +146,18 @@
     });
 //]]>
 </script>
+<?php
+    $registerParam = $this->getRequest()->getParam('register');
+    if ($registerParam || $registerParam === ''):
+?>
+    <script type="text/javascript">
+    //<![CDATA[
+        document.observe("dom:loaded", function() {
+            if($('login:register')) {
+                $('login:register').checked = true;
+                checkout.setMethod();
+            }
+        })
+    //]]>
+    </script>
+<?php endif; ?>

@@ -39,7 +39,8 @@
 	
 	<customer_account_login>
 		<reference name="customer_form_login">
-			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/login.phtml</template></action>
+            <action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/login.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/customer/form/login.phtml</template></action>
 		</reference>
 	</customer_account_login>
 	
@@ -52,6 +53,7 @@
 	<customer_account_create>
 		<reference name="customer_form_register">
 			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/register.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/customer/form/register.phtml</template></action>
 		</reference>
 	</customer_account_create>
 
@@ -64,9 +66,11 @@
 	<checkout_onepage_index>
 		<reference name="checkout.onepage.billing">
 			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/checkout/onepage/billing.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/checkout/onepage/billing.phtml</template></action>
 		</reference>
 		<reference name="checkout.onepage.login">
 			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/checkout/onepage/login.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/checkout/onepage/login.phtml</template></action>
 		</reference>
 	</checkout_onepage_index>
 </layout>
