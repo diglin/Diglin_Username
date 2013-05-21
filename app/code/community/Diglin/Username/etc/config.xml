@@ -65,8 +65,8 @@
                 <rewrite>
                     <customer>Diglin_Username_Model_Customer</customer>
                     <form>Diglin_Username_Model_Form</form>
-<!--                    <observer>Diglin_Username_Model_Observer</observer>-->
                     <setup>Diglin_Username_Model_Setup</setup>
+                    <config_share>Diglin_Username_Model_Config_Share</config_share>
                 </rewrite>
             </customer>
             <customer_entity>
