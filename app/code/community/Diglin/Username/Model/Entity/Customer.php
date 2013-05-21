@@ -4,25 +4,27 @@
  *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2012 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Diglin_Username_Model_Entity_Customer extends Mage_Customer_Model_Entity_Customer{
+class Diglin_Username_Model_Entity_Customer extends Mage_Customer_Model_Entity_Customer {
     
     protected function _beforeSave(Varien_Object $customer)
     {
         parent::_beforeSave($customer);
 
-        if ($customer->getSharingConfig()->isWebsiteScope()) {
-            $websiteId = (int) $customer->getWebsiteId();
-        }else{
-            $websiteId = null;
-        }
-        
-        $model = Mage::getModel('customer/customer');
-        $result = $model->customerUsernameExists($customer->getUsername(), $websiteId);
-        if ($result && $result->getId() != $customer->getId()) {
-            throw Mage::exception('Mage_Core', Mage::helper('customer')->__("Username already exists"));
+        if (Mage::getStoreConfigFlag('username/general/enabled')) {
+            if ($customer->getSharingConfig()->isWebsiteScope()) {
+                $websiteId = (int) $customer->getWebsiteId();
+            }else{
+                $websiteId = null;
+            }
+
+            $model = Mage::getModel('customer/customer');
+            $result = $model->customerUsernameExists($customer->getUsername(), $websiteId);
+            if ($result && $result->getId() != $customer->getId()) {
+                throw Mage::exception('Mage_Core', Mage::helper('customer')->__("Username already exists"));
+            }
         }
 
         return $this;
@@ -45,7 +47,7 @@ class Diglin_Username_Model_Entity_Customer extends Mage_Customer_Model_Entity_C
      */
     public function loadByUsername(Mage_Customer_Model_Customer $customer, $username)
     {
-        if (!Mage::getStoreConfigFlag('username/general/force_tolower')) {
+        if (!Mage::getStoreConfigFlag('username/general/case_sensitive')) {
             $filter = new Zend_Filter_StringToLower(array('encoding' => 'UTF-8'));
             $username = $filter->filter($username);
         }
@@ -54,6 +56,7 @@ class Diglin_Username_Model_Entity_Customer extends Mage_Customer_Model_Entity_C
             ->joinNatural(array('cev' => $this->getTable('customer_entity_varchar')))
             ->joinNatural(array('ea' => $this->getTable('eav_attribute')))
             ->where('ea.attribute_code=\'username\' AND cev.value=?',$username);
+
         if ($customer->getSharingConfig()->isWebsiteScope()) {
             if (!$customer->hasData('website_id')) {
                 Mage::throwException(Mage::helper('customer')->__('Customer website ID must be specified when using the website scope.'));

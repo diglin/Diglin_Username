@@ -4,11 +4,19 @@
  *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2012 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer {
-    
+class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
+{
+    /**
+     * Test if the customer account is enabled or not
+     *
+     * Event: customer_customer_authenticated
+     *
+     * @param Varien_Event_Observer $observer
+     * @throws Mage_Core_Exception
+     */
     public function isActive($observer)
     {   
         $customer = $observer->getEvent()->getModel();
@@ -17,17 +25,30 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer {
             throw new Mage_Core_Exception(Mage::helper('customer')->__('This account is disabled.'), 0);
         }
     }
-    
+
+    /**
+     * Add on the fly the username attribute to the customer collection
+     *
+     * Event: eav_collection_abstract_load_before
+     *
+     * @param Varien_Event_Observer $observer
+     */
     public function addAttributeToCollection ($observer)
     {
+        /* @var $collection Mage_Eav_Model_Entity_Collection_Abstract */
         $collection = $observer->getEvent()->getCollection();
-        $collection->addAttributeToSelect('username');
+        if ($collection->getEntity()->getType() == 'customer') {
+            $collection->addAttributeToSelect('username');
+        }
+
     }
     
     /**
      * Change the attribute of username after the configuration
      * has been changed
-     * 
+     *
+     * Event: admin_system_config_changed_section_username
+     *
      * @param Varien_Event_Observer $observer
      */
     public function changeEavAttribute ($observer)
@@ -57,6 +78,6 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer {
         }
         
         $attributeUsernameModel->setValidateRules($rules);
-        $attributeUsernameModel->save();   
+        $attributeUsernameModel->save();
     }
 }
