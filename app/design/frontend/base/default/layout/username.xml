@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Diglin
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Diglin
+ * @package     Diglin_Username
+ * @copyright   Copyright (c) 2011 Diglin (http://www.diglin.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+ -->
+<layout version="2.0.0">
+	
+	<customer_account_index>
+        <reference name="customer_account_dashboard">
+            <block type="core/template" name="username_information" as="info1">
+                <action method="setTemplate" ifconfig="username/general/enabled">
+                    <template>username/customer/account/dashboard/info.phtml</template>
+                </action>
+            </block>
+        </reference>
+	</customer_account_index>
+	
+	<customer_account_login>
+		<reference name="customer_form_login">
+            <action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/login.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/customer/form/login.phtml</template></action>
+		</reference>
+	</customer_account_login>
+	
+	<customer_account_edit>
+		<reference name="customer_edit">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/edit.phtml</template></action>
+		</reference>
+	</customer_account_edit>
+	
+	<customer_account_create>
+		<reference name="customer_form_register">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/register.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/customer/form/register.phtml</template></action>
+		</reference>
+	</customer_account_create>
+
+    <customer_account_forgotpassword>
+        <reference name="forgotPassword">
+            <action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/forgotpassword.phtml</template></action>
+        </reference>
+    </customer_account_forgotpassword>
+
+	<checkout_onepage_index>
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/checkout/onepage/billing.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/checkout/onepage/billing.phtml</template></action>
+		</reference>
+		<reference name="checkout.onepage.login">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/checkout/onepage/login.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/checkout/onepage/login.phtml</template></action>
+		</reference>
+	</checkout_onepage_index>
+</layout>

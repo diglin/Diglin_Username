@@ -119,5 +119,14 @@
             loginForm.submit();
         }
     }
+
+    // Diglin - Special Username
+    document.observe("login:setMethod", function (event){
+        if(event.memo.method == 'guest') {
+            Element.hide('register-username');
+        } else {
+            Element.show('register-username');
+        }
+    });
 //]]>
 </script>

@@ -12,28 +12,24 @@
 $installer = $this;
 
 /* @var $eavConfig Mage_Eav_Model_Config */
-$eavConfig = Mage::getSingleton('eav/config');
-$usernameAttribute = $eavConfig->getAttribute('customer', 'username');
+$usernameAttribute = Mage::getSingleton('eav/config')->getAttribute('customer', 'username');
 
 $installer->startSetup();
 
-$result = $installer->getConnection()->raw_fetchRow("SHOW COLUMNS from {$this->getTable('sales_flat_order')} like '%customer_username%'");
-if(!is_array($result) || !in_array('customer_username', $result)){
-$installer->run("
-    ALTER TABLE  `{$this->getTable('sales_flat_order')}`
-        ADD  `customer_username` VARCHAR( 255 ) NULL AFTER  `customer_taxvat`
-    ");
-    // can be a fix for bug of this module in Magento > 1.5
-}
+$select = $installer->getConnection()->select()
+    ->from($this->getTable('customer_entity_varchar'), 'entity_id')
+    ->where('attribute_id = ?', $usernameAttribute->getId());
 
+$ids = $installer->getConnection()->fetchCol($select);
 
-$select = new Zend_Db_Select($installer->getConnection());
-$select->from(array('c' => $this->getTable('customer_entity')), 'email')
+$select = null;
+
+$select = $installer->getConnection()->select()
+    ->from(array('c' => $this->getTable('customer_entity')), 'email')
     ->joinLeft(array('cev' => $this->getTable('customer_entity_varchar')), 'c.entity_id = cev.entity_id')
-    ->where("cev.entity_id NOT IN (SELECT entity_id FROM `{$this->getTable('customer_entity_varchar')}` WHERE attribute_id = {$usernameAttribute->getId()})")
-    ->group('c.entity_id');
+    ->where('cev.entity_id NOT IN ('. implode(',', $ids) . ')');
 
-// Create username for old customers to prevent problem when creating an order
+// Create username for old customers to prevent problem when creating an order as a guest
 $customers = $installer->getConnection()->fetchAll($select);
 foreach ($customers as $customer){
     $customer['attribute_id'] = $usernameAttribute->getId();
@@ -42,7 +38,7 @@ foreach ($customers as $customer){
     $customer['value'] = substr($email, 0, $pos) . substr(uniqid(), 0, 5);
     unset($customer['email']);
     unset($customer['value_id']);
-    
+
     $installer->getConnection()->insert($this->getTable('customer_entity_varchar'), $customer);
 }
 

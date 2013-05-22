@@ -2,17 +2,19 @@
 <config>
     <modules>
         <Diglin_Username>
-            <version>1.5.0</version>
+            <version>2.0.0</version>
         </Diglin_Username>
     </modules>
     <default>
         <username>
             <general>
+                <enabled>1</enabled>
                 <frontend>0</frontend>
                 <grid>1</grid>
                 <max_length>30</max_length>
                 <min_length>6</min_length>
                 <input_validation>default</input_validation>
+                <case_sensitive>1</case_sensitive>
             </general>
          </username>
     </default>
@@ -63,8 +65,8 @@
                 <rewrite>
                     <customer>Diglin_Username_Model_Customer</customer>
                     <form>Diglin_Username_Model_Form</form>
-<!--                    <observer>Diglin_Username_Model_Observer</observer>-->
                     <setup>Diglin_Username_Model_Setup</setup>
+                    <config_share>Diglin_Username_Model_Config_Share</config_share>
                 </rewrite>
             </customer>
             <customer_entity>
@@ -110,6 +112,16 @@
     </global>
 
     <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <username before="Mage_Customer">Diglin_Username</username>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+
         <translate>
             <modules>
                 <Diglin_Username>
@@ -131,15 +143,14 @@
     <adminhtml>
 		<events>
 			<admin_system_config_changed_section_username>
-<!--			<core_config_data_save_before>-->
 				<observers>
 					<change_eav_username>
 						<class>username/observer</class>
 						<method>changeEavAttribute</method>
 					</change_eav_username>
 				</observers>
-<!--			</core_config_data_save_before>-->
 			</admin_system_config_changed_section_username>
+
 			<eav_collection_abstract_load_before>
 				<observers>
 					<customer_load_collection>

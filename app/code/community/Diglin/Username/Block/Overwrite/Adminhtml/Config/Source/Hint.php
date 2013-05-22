@@ -12,7 +12,7 @@
  *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2012 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Diglin_Username_Block_Overwrite_Adminhtml_Config_Source_Hint
@@ -30,6 +30,6 @@ class Diglin_Username_Block_Overwrite_Adminhtml_Config_Source_Hint
     {
         $version = Mage::getConfig()->getModuleConfig('Diglin_Username')->version;
         return '<p><a href="javascript:window.open(\'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC\')"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" alt="Donate via Paypal" /> </a>Please, Invite me for a drink for the hard work done. Thank you in advance for your donation</p>
-        <p><strong>Diglin_Chat Version: '.$version.'</strong></p>';
+        <p><strong>Diglin_Username Version: '.$version.'</strong></p>';
     }
 }

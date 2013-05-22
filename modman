@@ -1,6 +1,6 @@
-app/code/community/Diglin/Username app/code/community/Diglin/Username app/code/community/Diglin/Username app/code/community/Diglin/Username
-app/design/frontend/default/default/layout/username.xml app/design/frontend/default/default/layout/username.xml
-app/design/frontend/default/default/template/username app/design/frontend/default/default/template/username
+app/code/community/Diglin/Username app/code/community/Diglin/Username
+app/design/frontend/base/default/layout/username.xml app/design/frontend/base/default/layout/username.xml
+app/design/frontend/base/default/template/username app/design/frontend/base/default/template/username
 app/etc/modules/Diglin_Username.xml app/etc/modules/Diglin_Username.xml
 app/locale/de_DE/Diglin_Username.csv app/locale/de_DE/Diglin_Username.csv
 app/locale/en_GB/Diglin_Username.csv app/locale/en_GB/Diglin_Username.csv

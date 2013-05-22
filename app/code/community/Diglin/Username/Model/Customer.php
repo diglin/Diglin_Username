@@ -4,7 +4,7 @@
  *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2012 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Diglin_Username_Model_Customer extends Mage_Customer_Model_Customer{
@@ -21,9 +21,10 @@ class Diglin_Username_Model_Customer extends Mage_Customer_Model_Customer{
     {   
         if(Zend_Validate::is($login, 'EmailAddress')){
             $this->loadByEmail($login);
-        }else{
+        }else if (Mage::getStoreConfigFlag('username/general/enabled')) {
             $this->loadByUsername($login);   
         }
+
         if ($this->getConfirmation() && $this->isConfirmationRequired()) {
             throw Mage::exception('Mage_Core', Mage::helper('customer')->__('This account is not confirmed.'),
                 self::EXCEPTION_EMAIL_NOT_CONFIRMED

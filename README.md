@@ -15,6 +15,12 @@ Magento module which allows your customers to use a username and not only the em
 - Display Username of each customer in the Customer Management Grid
 - Allow or not the customer to edit the username in My Account in frontend
 - Compatible and tested with Magento version >=1.4.2 until 1.7.x
+- NEW - support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
+- NEW - support username into the template of the persistent module
+
+## TODO 
+- add uninstall process thanks to the module [MageTrashApp](https://github.com/magento-hackathon/MageTrashApp)
+- add composer.json and add to the package.firegento.com  repositorie
 
 ## Installation
 
@@ -39,7 +45,7 @@ Magento module which allows your customers to use a username and not only the em
 
 ## Important
 
-If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username. The process may be long during the installation.
+If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username based on their email address. The process may be long during the installation.
 
 ## Deinstall
 
@@ -64,3 +70,12 @@ It's important to know if you create account from the backend, check which Websi
 ## Donation
 
 [Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
+
+## Change Log
+- V 2.0: 
+   - add support for the "forgot password" form
+   - fix bugs with checkout as guest
+   - implement best practices for install process
+   - check if same username are not used in different websites when the shop owner change the configuration of the "Account Sharing Options"
+   - add conditional templates for the persistent module
+   - Update the license in PHP file
