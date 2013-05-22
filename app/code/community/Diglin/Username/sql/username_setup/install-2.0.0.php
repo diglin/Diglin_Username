@@ -53,4 +53,11 @@ $installer->getConnection()->addColumn($installer->getTable('sales/quote'), 'cus
     'comment' => 'Customer Username'
 ));
 
+$installer->getConnection()->addColumn($installer->getTable('sales/order'), 'customer_username', array(
+    'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
+    'length' => '255',
+    'nullable' => true,
+    'comment' => 'Customer Username'
+));
+
 $installer->endSetup();
