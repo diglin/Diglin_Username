@@ -46,17 +46,19 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer {
 
         /* @var $attributeUsernameModel Mage_Customer_Model_Attribute */
         $attributeUsernameModel = Mage::getModel('customer/attribute')->loadByCode('customer', 'username');
-        $rules = $attributeUsernameModel->getValidateRules();
-        $rules['max_text_length'] = $maxLength;
-        $rules['min_text_length'] = $minLength;
-        
-        if($inputValidation != 'default') {
-            $rules['input_validation'] = $inputValidation;
-        }else {
-            $rules['input_validation'] = '';
+        if($attributeUsernameModel->getId()) {
+			$rules = $attributeUsernameModel->getValidateRules();
+			$rules['max_text_length'] = $maxLength;
+			$rules['min_text_length'] = $minLength;
+		
+			if($inputValidation != 'default') {
+				$rules['input_validation'] = $inputValidation;
+			}else {
+				$rules['input_validation'] = '';
+			}
+		
+			$attributeUsernameModel->setValidateRules($rules);
+			$attributeUsernameModel->save();
         }
-        
-        $attributeUsernameModel->setValidateRules($rules);
-        $attributeUsernameModel->save();   
     }
 }
