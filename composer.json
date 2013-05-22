@@ -1,0 +1,16 @@
+{
+    "name":"diglin/diglin_username",
+    "type":"magento-module",
+    "license":"OSL-3.0",
+    "homepage":"https://github.com/diglin/Diglin_Username",
+    "description":"Support username login and account register in Magento instead of only email address.",
+    "authors":[
+        {
+            "name":"Sylvain Rayé",
+            "email":"{firstname}.{lastname}@diglin.com"
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"*"
+    }
+}
