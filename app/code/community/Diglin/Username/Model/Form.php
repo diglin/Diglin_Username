@@ -56,8 +56,14 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 $websiteId = Mage::app()->getWebsite()->getId();
             }
 
-            if ($errors === true) {
+            if (!is_array($errors)) {
                 $errors = array();
+            }
+
+            $isCheckoutAsGuest = Mage::getSingleton('checkout/type_onepage')->getCheckoutMethod();
+            if ($isCheckoutAsGuest != Mage_Checkout_Model_Type_Onepage::METHOD_GUEST && empty($data['username'])) {
+                $message = Mage::helper('username')->__('Username is a required field.');
+                $errors = array_merge($errors, array($message));
             }
 
             // Other rules are validated by the parent class because they are basic rules provided by Magento Core

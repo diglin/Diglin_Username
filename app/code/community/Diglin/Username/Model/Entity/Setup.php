@@ -30,7 +30,7 @@ class Diglin_Username_Model_Entity_Setup extends Mage_Customer_Model_Resource_Se
                 'input'    => 'text',
                 'label'         => 'Username',
                 'visible'      => true,
-                'required'     => true,
+                'required'     => false,
                 'sort_order'    => 44,
                 'position'    => 44,
                 'adminhtml_customer' => 1,

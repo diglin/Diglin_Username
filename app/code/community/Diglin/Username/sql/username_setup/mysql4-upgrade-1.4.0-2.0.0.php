@@ -11,6 +11,8 @@
 /* @var $installer Diglin_Username_Model_Entity_Setup */
 $installer = $this;
 
+$installer->updateAttribute('customer', 'username', 'is_required', 0);
+
 $installer->startSetup();
 
 $select = $installer->getConnection()->select()

@@ -20,18 +20,16 @@ $select = $installer->getConnection()->select()
     ->from($this->getTable('customer_entity_varchar'), 'entity_id')
     ->where('attribute_id = ?', $usernameAttribute->getId());
 
-$ids = $installer->getConnection()->fetchAll($select);
+$ids = $installer->getConnection()->fetchCol($select);
 
 $select = null;
 
-//$select = new Zend_Db_Select($installer->getConnection());
 $select = $installer->getConnection()->select()
     ->from(array('c' => $this->getTable('customer_entity')), 'email')
     ->joinLeft(array('cev' => $this->getTable('customer_entity_varchar')), 'c.entity_id = cev.entity_id')
-    ->where("cev.entity_id NOT IN (?)", implode(',', $ids))
-    ->group('c.entity_id');
+    ->where('cev.entity_id NOT IN ('. implode(',', $ids) . ')');
 
-// Create username for old customers to prevent problem when creating an order
+// Create username for old customers to prevent problem when creating an order as a guest
 $customers = $installer->getConnection()->fetchAll($select);
 foreach ($customers as $customer){
     $customer['attribute_id'] = $usernameAttribute->getId();
