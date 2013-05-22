@@ -17,7 +17,7 @@ Magento module which allows your customers to use a username and not only the em
 - Compatible and tested with Magento version >=1.4.2 until 1.7.x
 - NEW - support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
 - NEW - support username into the template of the persistent module
-- 
+
 ## Installation
 
 ### Via Magento Connect
