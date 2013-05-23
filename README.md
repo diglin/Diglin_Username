@@ -18,9 +18,6 @@ Magento module which allows your customers to use a username and not only the em
 - NEW - support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
 - NEW - support username into the template of the persistent module
 
-## TODO 
-- add uninstall process thanks to the module [MageTrashApp](https://github.com/magento-hackathon/MageTrashApp)
-
 ## Installation
 
 ### Via Magento Connect
