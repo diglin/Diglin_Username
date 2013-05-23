@@ -12,5 +12,8 @@
     ],
     "require":{
         "magento-hackathon/magento-composer-installer":"*"
+    },
+    "suggest":{
+        "hackathon/hackathon_magetrashapp":"*"
     }
 }
