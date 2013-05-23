@@ -161,4 +161,8 @@
 			</eav_collection_abstract_load_before>
 		</events>
     </adminhtml>
+    
+    <uninstall>
+        <filename>uninstall.txt</filename>
+    </uninstall>
 </config>
