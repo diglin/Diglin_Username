@@ -18,10 +18,6 @@ Magento module which allows your customers to use a username and not only the em
 - NEW - support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
 - NEW - support username into the template of the persistent module
 
-## TODO 
-- add uninstall process thanks to the module [MageTrashApp](https://github.com/magento-hackathon/MageTrashApp)
-- add composer.json and add to the package.firegento.com  repositorie
-
 ## Installation
 
 ### Via Magento Connect
@@ -46,10 +42,21 @@ Magento module which allows your customers to use a username and not only the em
 ## Important
 
 If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username based on their email address. The process may be long during the installation.
+It's important to know if you create account from the backend, check which Website where you want to save the account
 
 ## Deinstall
 
-- If you used MagentoConnect, you may use the deinstall process of the Magento Connect Backend page view of your Magento installation.
+The module install some data and changes in your database. Deinstalling the module will make some trouble cause of those data. You will need to remove those information by following the procedure below.
+
+#### Via MAgeTrashApp
+
+An additional module called MageTrashApp has been installed with this module to help you to uninstall this module in a clean way. If it is not installed, please install it from [MageTrashApp](https://github.com/magento-hackathon/MageTrashApp)
+If it is installed, go to your backend menu System > Configuration > Advanced > MageTrashApp, then click on the tab "Extension Installed", select the drop down option "Uninstall" of the module Diglin_Username and press "Save Config" button to uninstall
+If you use this module, you don't need to make any queries in your database as explained below in case of manually uninstallation.
+
+#### Via Magento Connect or manually
+
+- If you used Magento Connect, you may use the deinstall process of the Magento Connect Backend page view of your Magento installation.
 - Otherwise remove the files following the hierarchy of the folders of this repository
 - Then get access to your database and do the followings queries:
   Do the following sql query in your database after to have done a backup, please check the table name with your database:
@@ -57,8 +64,6 @@ If you have an important quantity of customers in your database, please try this
 `DELETE FROM eav_attribute WHERE attribute_code LIKE '%username%';`
 `ALTER TABLE sales_flat_quote DROP COLUMN 'customer_username';`
 `ALTER TABLE sales_flat_order DROP COLUMN 'customer_username';`
-
-It's important to know if you create account from the backend, check which Website where you want to save the account
 
 ## Author
 

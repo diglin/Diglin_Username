@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Diglin_Username>
-            <version>2.0.0</version>
+            <version>2.0.1</version>
         </Diglin_Username>
     </modules>
     <default>
@@ -161,4 +161,8 @@
 			</eav_collection_abstract_load_before>
 		</events>
     </adminhtml>
+    
+    <uninstall>
+        <filename>uninstall.txt</filename>
+    </uninstall>
 </config>

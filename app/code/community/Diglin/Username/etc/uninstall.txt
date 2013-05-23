@@ -1,0 +1,8 @@
+app/code/community/Diglin/Username app/code/community/Diglin/Username
+app/design/frontend/base/default/layout/username.xml app/design/frontend/base/default/layout/username.xml
+app/design/frontend/base/default/template/username app/design/frontend/base/default/template/username
+app/etc/modules/Diglin_Username.xml app/etc/modules/Diglin_Username.xml
+app/locale/de_DE/Diglin_Username.csv app/locale/de_DE/Diglin_Username.csv
+app/locale/en_GB/Diglin_Username.csv app/locale/en_GB/Diglin_Username.csv
+app/locale/en_US/Diglin_Username.csv app/locale/en_US/Diglin_Username.csv
+app/locale/fr_FR/Diglin_Username.csv app/locale/fr_FR/Diglin_Username.csv
