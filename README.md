@@ -27,6 +27,31 @@ Magento module which allows your customers to use a username and not only the em
 - Install [modman](https://github.com/colinmollenhour/modman)
 - Use the command from your Magento installation folder: `modman clone https://github.com/diglin/Diglin_Username.git`
 
+### Via composer
+- Install [composer](http://getcomposer.org/download/)
+- Create a composer.json into your project like the following sample:
+
+```json
+{
+    ...
+    "require": {
+        "diglin/diglin_username":"*"
+    },
+    "repositories": [
+	    {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "extra":{
+        "magento-root-dir": "./"
+    }
+}
+
+```
+
+- Then from your composer.json folder: `php composer.phar install` or `composer install`
+
 ### Manually
 - You can copy the files from the folders of this repository to the same folders of your installation
 
@@ -48,7 +73,7 @@ It's important to know if you create account from the backend, check which Websi
 
 The module install some data and changes in your database. Deinstalling the module will make some trouble cause of those data. You will need to remove those information by following the procedure below.
 
-#### Via MAgeTrashApp
+#### Via MageTrashApp
 
 An additional module called MageTrashApp has been installed with this module to help you to uninstall this module in a clean way. If it is not installed, please install it from [MageTrashApp](https://github.com/magento-hackathon/MageTrashApp)
 If it is installed, go to your backend menu System > Configuration > Advanced > MageTrashApp, then click on the tab "Extension Installed", select the drop down option "Uninstall" of the module Diglin_Username and press "Save Config" button to uninstall
@@ -77,6 +102,9 @@ If you use this module, you don't need to make any queries in your database as e
 [Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
 
 ## Change Log
+- V 2.0.1
+   - add composer support
+   - fix some sql bugs while installing
 - V 2.0: 
    - add support for the "forgot password" form
    - fix bugs with checkout as guest
