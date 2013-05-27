@@ -81,11 +81,5 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
 			$attributeUsernameModel->setValidateRules($rules);
 			$attributeUsernameModel->save();
         }
-<<<<<<< HEAD
-=======
-        
-        $attributeUsernameModel->setValidateRules($rules);
-        $attributeUsernameModel->save();
->>>>>>> 110cb6a43b166e9d2882c96ffe68c0b82da10964
     }
 }
