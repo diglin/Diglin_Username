@@ -37,7 +37,8 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
     {
         /* @var $collection Mage_Eav_Model_Entity_Collection_Abstract */
         $collection = $observer->getEvent()->getCollection();
-        if ($collection->getEntity()->getType() == 'customer') {
+        $entity = $collection->getEntity();
+        if (!empty($entity) && $entity->getType() == 'customer') {
             $collection->addAttributeToSelect('username');
         }
 

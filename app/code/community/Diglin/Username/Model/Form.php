@@ -42,6 +42,8 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 $customerId = Mage::app()->getFrontController()
                     ->getRequest()
                     ->getParam('id');
+            } else if (!$customerId && !Mage::app()->getStore()->isAdmin()) {
+                $customerId = Mage::getSingleton('customer/session')->getCustomer()->getId();
             }
 
             if (isset($data['website_id']) && $data['website_id'] !== false) {
@@ -75,7 +77,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
 
             $result = $model->customerUsernameExists($data['username'], $websiteId);
             if ($result && $result->getId() != $customerId) {
-                $message = Mage::helper('username')->__('Username already exists');
+                $message = Mage::helper('username')->__('Username already exists customerId ' . $customerId . ' - Result ' . $result->getId());
                 $errors = array_merge($errors, array($message));
             }
         }
