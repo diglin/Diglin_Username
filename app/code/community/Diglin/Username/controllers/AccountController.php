@@ -33,7 +33,9 @@ class Diglin_Username_AccountController extends Mage_Customer_AccountController
                 return;
             } else if (!$customer->getId()) {
                 // Load by Email if username not found and email seems to be valid
-                $customer->loadByEmail($email);
+                $customer
+                    ->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
+                    ->loadByEmail($email);
             }
 
             if ($customer->getId()) {
