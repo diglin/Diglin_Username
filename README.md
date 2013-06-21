@@ -1,4 +1,4 @@
-# Diglin_Username #
+# Diglin Username #
 
 Magento module which allows your customers to use a username and not only the email address as identifier
 
@@ -60,16 +60,16 @@ Magento module which allows your customers to use a username and not only the em
 - Please, configure the module go to the backend and follow the menu System > Configuration > Diglin > Username
 - You can put the username into your email template, you can put the following string {{var customer.username}} in the email templates: account_new.html and account_new_confirmation.html
 - If you have a 404 error page, try to login/logout and go back to the configuration page. Or save again the Administrator role in System > Permissions > Role
-- IMPORTANT NOTE: check if you want to have the customer account global or per website, see in System > Configuration > Customers > Customer Configuration > Account Sharing Options
-  If set to "Per website", the username will be unique per each website
-  If set to "Global", the username will be unique for the whole website
 
 ## Important
 
-If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username based on their email address. The process may be long during the installation.
-It's important to know if you create account from the backend, check which Website where you want to save the account
+- If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username based on their email address. The process may be long during the installation.
+- It's important to know if you create account from the backend, check which Website where you want to save the account
+- Check if you want to have the customer account global or per website, see in System > Configuration > Customers > Customer Configuration > Account Sharing Options
+  If set to "Per website", the username will be unique per each website
+  If set to "Global", the username will be unique for the whole website
 
-## Deinstall
+## Uninstall
 
 The module install some data and changes in your database. Deinstalling the module will make some trouble cause of those data. You will need to remove those information by following the procedure below.
 
