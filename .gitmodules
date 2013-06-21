@@ -1,0 +1,3 @@
+[submodule "MageTrashApp"]
+	path = MageTrashApp
+	url = git@github.com:magento-hackathon/MageTrashApp.git

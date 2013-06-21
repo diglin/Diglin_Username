@@ -30,6 +30,8 @@ if (!empty($ids)) {
 	    ->where('cev.entity_id NOT IN ('. implode(',', $ids) . ')');
 }
 
+// @todo - add support for Customer Website Share option (check that the username doesn't already exist in other websites)
+
 // Create username for old customers to prevent problem when creating an order as a guest
 $customers = $installer->getConnection()->fetchAll($select);
 foreach ($customers as $customer) {

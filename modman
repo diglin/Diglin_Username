@@ -1,3 +1,4 @@
+@import MageTrashApp
 app/code/community/Diglin/Username app/code/community/Diglin/Username
 app/design/frontend/base/default/layout/username.xml app/design/frontend/base/default/layout/username.xml
 app/design/frontend/base/default/template/username app/design/frontend/base/default/template/username
