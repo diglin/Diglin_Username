@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Diglin_Username>
-            <version>2.0.5</version>
+            <version>2.0.6</version>
         </Diglin_Username>
     </modules>
     <default>
