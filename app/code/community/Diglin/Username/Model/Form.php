@@ -31,7 +31,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
     {
         $errors = parent::validateData($data);
 
-        if (isset($data['username'])) {
+        if (!empty($data['username'])) {
             $model = Mage::getModel('customer/customer');
 
             $customerId = Mage::app()->getFrontController()
@@ -42,9 +42,16 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 $customerId = Mage::app()->getFrontController()
                     ->getRequest()
                     ->getParam('id');
-            } else if (!$customerId && !Mage::app()->getStore()->isAdmin()) {
+            } 
+            
+            if (!$customerId && !Mage::app()->getStore()->isAdmin()) {
                 $customerId = Mage::getSingleton('customer/session')->getCustomer()->getId();
             }
+
+			// Prevent possible errors
+			if (empty($customerId)) {
+				return $errors;
+			}
 
             if (isset($data['website_id']) && $data['website_id'] !== false) {
                 $websiteId = $data['website_id'];
