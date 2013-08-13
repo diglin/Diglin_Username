@@ -11,11 +11,13 @@ class Diglin_Username_Model_Config_Source_InputValidation
 {
     public function toOptionArray()
     {
+        $helper = Mage::helper('username');
+        
         return array(
-            array('value'=>'default', 'label'=>Mage::helper('username')->__('Default (letters, digits and _- characters)')),
-            array('value'=>'alphanumeric', 'label'=>Mage::helper('username')->__('Letters and digits')),
-            array('value'=>'alpha', 'label'=>Mage::helper('username')->__('Letters only')),
-            array('value'=>'numeric', 'label'=>Mage::helper('username')->__('Digits only')),
+            array('value'=>'default', 'label'=> $helper->__('Default (letters, digits and _- characters)')),
+            array('value'=>'alphanumeric', 'label'=> $helper->__('Letters and digits')),
+            array('value'=>'alpha', 'label'=> $helper->__('Letters only')),
+            array('value'=>'numeric', 'label'=> $helper->__('Digits only')),
         );
     }
 }
