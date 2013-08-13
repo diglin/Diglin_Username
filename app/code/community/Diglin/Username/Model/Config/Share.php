@@ -17,7 +17,7 @@
 class Diglin_Username_Model_Config_Share extends Mage_Customer_Model_Config_Share
 {
     /**
-     * Check for username dublicates before saving customers sharing options
+     * Check for username duplicates before saving customers sharing options
      *
      * @return Mage_Customer_Model_Config_Share
      * @throws Mage_Core_Exception
