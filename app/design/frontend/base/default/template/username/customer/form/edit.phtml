@@ -40,17 +40,17 @@
             	<div class="field">
                     <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
                     <div class="input-box">
-                        <input type="text" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
+                        <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
                     </div>
                 </div>
                 <div class="field">
                     <label for="username" class="required"><em>*</em><?php echo Mage::helper('customer')->__('Username') ?></label>
                     <div class="input-box">
                     <?php if(Mage::getStoreConfigFlag('username/general/frontend')) : ?>
-                        <input type="text" name="username" id="username" value="<?php echo $this->htmlEscape($this->getCustomer()->getUsername()) ?>" title="<?php echo Mage::helper('customer')->__('Username') ?>" class="input-text required-entry" />
+                        <input type="text" name="username" id="username" value="<?php echo $this->escapeHtml($this->getCustomer()->getUsername()) ?>" title="<?php echo Mage::helper('customer')->__('Username') ?>" class="input-text required-entry" />
                     <?php else: ?>
-                        <input type="hidden" name="username" id="username" value="<?php echo $this->htmlEscape($this->getCustomer()->getUsername()) ?>"/>
-                        <?php echo $this->htmlEscape($this->getCustomer()->getUsername()); ?>
+                        <input type="hidden" name="username" id="username" value="<?php echo $this->escapeHtml($this->getCustomer()->getUsername()) ?>"/>
+                        <?php echo $this->escapeHtml($this->getCustomer()->getUsername()); ?>
                     <?php endif;?>
                     </div>
                 </div>
@@ -78,6 +78,8 @@
             <li>
                 <label for="current_password" class="required"><em>*</em><?php echo $this->__('Current Password') ?></label>
                 <div class="input-box">
+                    <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
+                    <input type="text" class="input-text no-display" name="dummy" id="dummy" />
                     <input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
                 </div>
             </li>
@@ -120,6 +122,7 @@
             $('confirmation').removeClassName('required-entry');
         }
     }
+
     <?php if($this->getCustomer()->getChangePassword()): ?>
         setPasswordForm(true);
     <?php endif; ?>

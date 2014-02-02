@@ -39,6 +39,7 @@
     <?php /* Extensions placeholder */ ?>
     <?php echo $this->getChildHtml('customer.form.login.extra')?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
+        <?php echo $this->getBlockHtml('formkey'); ?>
         <div class="col2-set">
             <div class="col-1 new-users">
                 <div class="content">
@@ -52,9 +53,9 @@
                     <p><?php echo $this->__('If you have an account with us, please log in.') ?></p>
                     <ul class="form-list">
                         <li>
-                            <label for="email" class="required"><em>*</em><?php echo Mage::helper('customer')->__('Email Address/Username') ?></label>
+                            <label for="email" class="required"><em>*</em><?php echo Mage::helper('username')->__('Email Address/Username') ?></label>
                             <div class="input-box">
-                                <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry" title="<?php echo Mage::helper('customer')->__('Email Address/Username') ?>" />
+                                <input type="text" name="login[username]" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" id="email" class="input-text required-entry" title="<?php echo Mage::helper('username')->__('Email Address/Username') ?>" />
                             </div>
                         </li>
                         <li>

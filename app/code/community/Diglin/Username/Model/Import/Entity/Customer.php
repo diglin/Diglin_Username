@@ -2,11 +2,22 @@
 /**
  * Diglin
  *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2014 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Model_Import_Entity_Customer
 {
     /**
@@ -32,6 +43,8 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
             $entityRowsUp = array();
             $attributes   = array();
 
+            $oldCustomersToLower = array_change_key_case($this->_oldCustomers, CASE_LOWER);
+
             foreach ($bunch as $rowNum => $rowData) {
                 if (!$this->validateRow($rowData, $rowNum)) {
                     continue;
@@ -47,8 +60,9 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
                         'updated_at' => now(),
                         'is_active'  => empty($rowData['is_active']) ? 1 : $this->_attributes['is_active']['options'][$rowData['is_active']]
                     );
-                    if (isset($this->_oldCustomers[$rowData[self::COL_EMAIL]][$rowData[self::COL_WEBSITE]])) { // edit
-                        $entityId = $this->_oldCustomers[$rowData[self::COL_EMAIL]][$rowData[self::COL_WEBSITE]];
+                    $emailToLower = strtolower($rowData[self::COL_EMAIL]);
+                    if (isset($oldCustomersToLower[$emailToLower][$rowData[self::COL_WEBSITE]])) { // edit
+                        $entityId = $oldCustomersToLower[$emailToLower][$rowData[self::COL_WEBSITE]];
                         $entityRow['entity_id'] = $entityId;
                         $entityRowsUp[] = $entityRow;
                     } else { // create
@@ -58,6 +72,7 @@ class Diglin_Username_Model_Import_Entity_Customer extends Mage_ImportExport_Mod
                         $entityRow['attribute_set_id'] = 0;
                         $entityRow['website_id']       = $this->_websiteCodeToId[$rowData[self::COL_WEBSITE]];
                         $entityRow['email']            = $rowData[self::COL_EMAIL];
+                        $entityRow['is_active']        = 1;
                         $entityRowsIn[]                = $entityRow;
 
                         $this->_newCustomers[$rowData[self::COL_EMAIL]][$rowData[self::COL_WEBSITE]] = $entityId;
