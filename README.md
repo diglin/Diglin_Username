@@ -16,8 +16,9 @@ Magento module which allows your customers to use a username and not only the em
 - Display Username of each customer in the Customer Management Grid
 - Allow or not the customer to edit the username in My Account in frontend
 - Compatible and tested with Magento version >=1.4.2 until 1.7.x
-- NEW - support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
-- NEW - support username into the template of the persistent module
+- support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
+- support username into the template of the persistent module
+- NEW - support Custom Regex validation (Select the Input validation 'custom' from the configuration page)
 
 ## Installation
 
@@ -103,6 +104,8 @@ If you use this module, you don't need to make any queries in your database as e
 [Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
 
 ## Change Log
+- 2.2.0
+   - Add Custom Input validation option
 - 2.1.0
    - Magento 1.8 support
    - Copyright changes

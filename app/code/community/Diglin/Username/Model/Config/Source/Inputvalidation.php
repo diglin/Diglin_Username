@@ -29,6 +29,7 @@ class Diglin_Username_Model_Config_Source_InputValidation
             array('value'=>'alphanumeric', 'label'=> $helper->__('Letters and digits')),
             array('value'=>'alpha', 'label'=> $helper->__('Letters only')),
             array('value'=>'numeric', 'label'=> $helper->__('Digits only')),
+            array('value'=>'custom', 'label'=> $helper->__('Custom (PCRE Regex)')),
         );
     }
 }
