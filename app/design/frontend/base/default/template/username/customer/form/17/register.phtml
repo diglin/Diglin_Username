@@ -23,11 +23,12 @@
  * @copyright   Copyright (c) 2011 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
-
+?>
+<?php
 /**
  * Create account form template
  *
- * @see Mage_Customer_Block_Form_Register
+ * @var $this Mage_Customer_Block_Form_Register
  */
 ?>
 <div class="account-create">
@@ -56,9 +57,9 @@
                     </div>
 
                     <div class="field">
-                        <label for="username" class="required"><em>*</em><?php echo Mage::helper('customer')->__('Username') ?></label>
+                        <label for="username" class="required"><em>*</em><?php echo Mage::helper('username')->__('Username') ?></label>
                         <div class="input-box">
-                            <input type="text" name="username" id="username" value="<?php echo $this->htmlEscape($this->getFormData()->getUsername()) ?>" title="<?php echo Mage::helper('customer')->__('Username') ?>" class="input-text required-entry" />
+                            <input type="text" name="username" id="username" value="<?php echo $this->escapeHtml($this->getFormData()->getUsername()) ?>" title="<?php echo Mage::helper('username')->__('Username') ?>" class="input-text required-entry" />
                         </div>
                     </div>
                 </li>

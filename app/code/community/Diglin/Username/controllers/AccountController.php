@@ -2,9 +2,19 @@
 /**
  * Diglin
  *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2014 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -16,7 +26,7 @@ class Diglin_Username_AccountController extends Mage_Customer_AccountController
      * Rewrite to allow support of Username
      *
      */
-    public function forgotPasswordPostAction ()
+    public function forgotPasswordPostAction()
     {
         $email = (string) $this->getRequest()->getPost('email');
         if ($email) {
@@ -40,7 +50,7 @@ class Diglin_Username_AccountController extends Mage_Customer_AccountController
 
             if ($customer->getId()) {
                 try {
-                    $newResetPasswordLinkToken = Mage::helper('customer')->generateResetPasswordLinkToken();
+                    $newResetPasswordLinkToken = $this->_getHelper('customer')->generateResetPasswordLinkToken();
                     $customer->changeResetPasswordLinkToken($newResetPasswordLinkToken);
                     $customer->sendPasswordResetConfirmationEmail();
                 } catch (Exception $exception) {
@@ -50,11 +60,13 @@ class Diglin_Username_AccountController extends Mage_Customer_AccountController
                 }
             }
             $this->_getSession()
-                ->addSuccess(Mage::helper('customer')->__('If there is an account associated with %s you will receive an email with a link to reset your password.', Mage::helper('customer')->htmlEscape($email)));
+                ->addSuccess( $this->_getHelper('customer')
+                    ->__('If there is an account associated with %s you will receive an email with a link to reset your password.',
+                        $this->_getHelper('customer')->escapeHtml($email)));
             $this->_redirect('*/*/');
             return;
         } else {
-            $this->_getSession()->addError($this->__('Please enter your email or username.'));
+            $this->_getSession()->addError(Mage::helper('username')->__('Please enter your email or username.'));
             $this->_redirect('*/*/forgotpassword');
             return;
         }

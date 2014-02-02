@@ -2,11 +2,22 @@
 /**
  * Diglin
  *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
  * @category    Diglin
  * @package     Diglin_Username
- * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2014 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
 {
     /**
@@ -58,7 +69,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
             } elseif ($customerId) {
                 $customer = $model->load($customerId);
                 $websiteId = $customer->getWebsiteId();
-                if ($customer->getUsername() == $data['username']) { // don't make any test if the user has already the username
+                if ($customer->getUsername() == $data['username']) { // don't make any test if the user has already a username
                     return $errors;
                 }
             } else {

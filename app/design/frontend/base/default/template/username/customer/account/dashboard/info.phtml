@@ -40,7 +40,7 @@ $customer = Mage::getSingleton('customer/session')->getCustomer();
                 </div>
                 <div class="box-content">
                     <p>
-                        <?php echo $this->__('Username: ') . $this->htmlEscape($customer->getUsername()) ?>
+                        <?php echo $this->__('Username: ') . $this->escapeHtml($customer->getUsername()) ?>
                     </p>
                 </div>
             </div>
