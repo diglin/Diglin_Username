@@ -4,6 +4,7 @@ Magento module which allows your customers to use a username and not only the em
 
 ## Features
 
+- Magento 1.3 to 1.8.1
 - Login with a username and/or email, it can be done from frontend during checkout or getting access to the customer account
 - Save a username from frontend (register account or checkout process) or from backend by editing a customer account
 - Check that the username doesn't already exists
@@ -102,10 +103,14 @@ If you use this module, you don't need to make any queries in your database as e
 [Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
 
 ## Change Log
-- V 2.0.1
+- 2.1.0
+   - Magento 1.8 support
+   - Copyright changes
+   - Move column grid to observer
+- 2.0.1
    - add composer support
    - fix some sql bugs while installing
-- V 2.0: 
+- 2.0: 
    - add support for the "forgot password" form
    - fix bugs with checkout as guest
    - implement best practices for install process
