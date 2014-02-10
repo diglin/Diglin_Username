@@ -100,15 +100,17 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                     break;
             }
 
-            $validate = new Zend_Validate_Regex($validate);
+            if ($useInputValidation) {
+                $validate = new Zend_Validate_Regex($validate);
 
-            if($useInputValidation && ! $validate->isValid($data['username']) ){
-                if ($useInputValidation == 'custom') {
-                    $message = new Zend_Validate_Regex(Mage::getStoreConfig('username/general/input_validation_custom_message'));
-                } else {
-                    $message = Mage::helper('username')->__('Username is invalid! Only letters, digits and \'_-\' values are accepted.');
+                if(! $validate->isValid($data['username']) ){
+                    if ($useInputValidation == 'custom') {
+                        $message = Mage::getStoreConfig('username/general/input_validation_custom_message');
+                    } else {
+                        $message = Mage::helper('username')->__('Username is invalid! Only letters, digits and \'_-\' values are accepted.');
+                    }
+                    $errors = array_merge($errors, array($message));
                 }
-                $errors = array_merge($errors, array($message));
             }
 
             $result = $model->customerUsernameExists($data['username'], $websiteId);
