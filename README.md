@@ -95,8 +95,8 @@ If you use this module, you don't need to make any queries in your database as e
 ## Author
 
 * Sylvain Rayé
-* http://www.sylvainraye.com/
-* [@sylvainraye](https://twitter.com/sylvainraye)
+* http://www.diglin.com/
+* [@diglin_](https://twitter.com/diglin_)
 * [Follow me on github!](https://github.com/diglin)
 
 ## Donation
