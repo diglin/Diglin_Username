@@ -18,8 +18,8 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Diglin_Username_Model_Customer extends Mage_Customer_Model_Customer{
-
+class Diglin_Username_Model_Customer extends Mage_Customer_Model_Customer
+{
     /**
      * Authenticate customer
      *
