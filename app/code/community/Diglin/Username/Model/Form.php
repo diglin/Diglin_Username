@@ -90,10 +90,30 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
             }
 
             // Other rules are validated by the parent class because they are basic rules provided by Magento Core
-            $validate = new Zend_Validate_Regex('/^[\w-]*$/');
-            if(Mage::getStoreConfig('username/general/input_validation') == 'default' && ! $validate->isValid($data['username']) ){
-                $message = Mage::helper('username')->__('Username is invalid! Only letters, digits and \'_-\' values are accepted.');
-                $errors = array_merge($errors, array($message));
+
+            $inputValidation = Mage::getStoreConfig('username/general/input_validation');
+            $useInputValidation = ($inputValidation == 'default' || $inputValidation == 'custom') ? true : false;
+
+            switch ($useInputValidation) {
+                case 'default':
+                    $validate = '/^[\w-]*$/';
+                    break;
+                case 'custom':
+                    $validate = Mage::getStoreConfig('username/general/input_validation_custom');
+                    break;
+            }
+
+            if ($useInputValidation) {
+                $validate = new Zend_Validate_Regex($validate);
+
+                if(! $validate->isValid($data['username']) ){
+                    if ($useInputValidation == 'custom') {
+                        $message = Mage::getStoreConfig('username/general/input_validation_custom_message');
+                    } else {
+                        $message = Mage::helper('username')->__('Username is invalid! Only letters, digits and \'_-\' values are accepted.');
+                    }
+                    $errors = array_merge($errors, array($message));
+                }
             }
 
             $result = $model->customerUsernameExists($data['username'], $websiteId);

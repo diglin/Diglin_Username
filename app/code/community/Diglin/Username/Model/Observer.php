@@ -82,7 +82,7 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
 			$rules['max_text_length'] = $maxLength;
 			$rules['min_text_length'] = $minLength;
 		
-			if($inputValidation != 'default') {
+			if($inputValidation != 'default' && $inputValidation != 'custom') {
 				$rules['input_validation'] = $inputValidation;
 			}else {
 				$rules['input_validation'] = '';
