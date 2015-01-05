@@ -10,13 +10,13 @@ Magento module which allows your customers to use a username and not only the em
 - Check that the username doesn't already exists
 - Allow you to deactivate temporary customer account from Customer Management page (bonus functionality from version > Magento 1.4.x). The user will be blocked if the option in the customer backend is set to no.
 - The default templates override some customer and checkout views to adapt display for login pages, checkout process and account edition in frontend. If you have a customized template, please check the layout file username.xml and compare with your template to use or adapt to your situation.
-- When you have already customers in your system and you do a first install of this plugin, a username will be generated for each customer based on a part of his email and a unique id. (e.g. email address is "developer@localhost.com" -> username is "developer1235467")
-- Configurable options to define what kind of username to support: only letters, only digits, both or default (digits, letters and special characters '-_')
+- When you have already customers in your system and you do a first install of this plugin, a username may be generated for each customer based on a part of his email and a unique id. (e.g. email address is "developer@localhost.com" -> username is "developer1235467"). See the configuration page of the extension to trigger this feature
+- Configurable options to define what kind of username to support: only letters, only digits, both or default (digits, letters and special characters '-_') or even custom regex
 - Configurable options to set the maximum and minium string length
 - Display Username of each customer in the Customer Management Grid
 - Allow or not the customer to edit the username in My Account in frontend
-- support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
-- support username into the template of the persistent module
+- Support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
+- Support username into the template of the persistent module
 - NEW - support Custom Regex validation (Select the Input validation 'custom' from the configuration page)
 
 ## Installation
