@@ -37,6 +37,7 @@ class Diglin_Username_Model_Entity_Setup extends Mage_Customer_Model_Resource_Se
             'username' => array(
                 'type'    => 'varchar',
                 'input'    => 'text',
+                'user_defined'  => true,
                 'label'         => 'Username',
                 'visible'      => true,
                 'required'     => false,

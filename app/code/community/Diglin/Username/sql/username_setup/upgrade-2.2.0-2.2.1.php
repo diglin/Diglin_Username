@@ -19,4 +19,8 @@
 /* @var $installer Diglin_Username_Model_Entity_Setup */
 $installer = $this;
 
-// moved to admin controller
+$installer->startSetup();
+
+$installer->updateAttribute('customer', 'username', 'is_user_defined', 1);
+
+$installer->endSetup();
