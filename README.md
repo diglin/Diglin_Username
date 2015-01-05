@@ -4,7 +4,7 @@ Magento module which allows your customers to use a username and not only the em
 
 ## Features
 
-- Magento 1.3 to 1.9.1
+- Compatible and tested with Magento version >=1.4.2 until 1.9.x (should work also on 1.3)
 - Login with a username and/or email, it can be done from frontend during checkout or getting access to the customer account
 - Save a username from frontend (register account or checkout process) or from backend by editing a customer account
 - Check that the username doesn't already exists
@@ -15,7 +15,6 @@ Magento module which allows your customers to use a username and not only the em
 - Configurable options to set the maximum and minium string length
 - Display Username of each customer in the Customer Management Grid
 - Allow or not the customer to edit the username in My Account in frontend
-- Compatible and tested with Magento version >=1.4.2 until 1.7.x
 - support username when a customer wants to retrieve his forgotten password thanks to the "Forgotten Password" form
 - support username into the template of the persistent module
 - NEW - support Custom Regex validation (Select the Input validation 'custom' from the configuration page)
@@ -65,7 +64,6 @@ Magento module which allows your customers to use a username and not only the em
 
 ## Important
 
-- If you have an important quantity of customers in your database, please try this module on a development environment first. All old customers will get a random username based on their email address. The process may be long during the installation.
 - It's important to know if you create account from the backend, check which Website where you want to save the account
 - Check if you want to have the customer account global or per website, see in System > Configuration > Customers > Customer Configuration > Account Sharing Options
   If set to "Per website", the username will be unique per each website
@@ -99,11 +97,10 @@ If you use this module, you don't need to make any queries in your database as e
 * [@diglin_](https://twitter.com/diglin_)
 * [Follow me on github!](https://github.com/diglin)
 
-## Donation
-
-[Invite me for a drink](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y66QHLU5VX5BC)
-
 ## Change Log
+- 2.2.1
+   - Generate missing username from configuration backend thanks to a button instead while installing the extension
+   - Allow username creation from order creation for a new customer
 - 2.2.0
    - Add Custom Input validation option
 - 2.1.0
