@@ -4,7 +4,7 @@ Magento module which allows your customers to use a username and not only the em
 
 ## Features
 
-- Magento 1.3 to 1.8.1
+- Magento 1.3 to 1.9.1
 - Login with a username and/or email, it can be done from frontend during checkout or getting access to the customer account
 - Save a username from frontend (register account or checkout process) or from backend by editing a customer account
 - Check that the username doesn't already exists
