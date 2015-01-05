@@ -184,6 +184,21 @@
 		</events>
     </adminhtml>
 
+    <admin>
+        <routers>
+            <username>
+                <use>admin</use>
+                <args>
+                    <module>Diglin_Username</module>
+                    <frontName>username</frontName>
+                    <modules>
+                        <Diglin_Username before="Mage_Adminhtml">Diglin_Username_Adminhtml</Diglin_Username>
+                    </modules>
+                </args>
+            </username>
+        </routers>
+    </admin>
+
     <uninstall>
         <filename>uninstall.txt</filename>
     </uninstall>

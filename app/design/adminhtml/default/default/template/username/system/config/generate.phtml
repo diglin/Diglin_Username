@@ -1,0 +1,85 @@
+<?php
+/**
+ * Diglin GmbH
+ *
+ * @category    Diglin
+ * @package     Diglin_Username
+ * @author      Sylvain Rayé <support@diglin.com>
+ * @copyright   Copyright (c) 2008-2015 Diglin GmbH - Switzerland (http://www.diglin.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+// @var $this Diglin_Username_Block_Adminhtml_Config_Source_Generate
+?>
+<script type="text/javascript">
+//<![CDATA[
+
+    function enableSyncButton() {
+        Form.Element.enable('generate_button');
+        $('generate_button').removeClassName('disabled');
+    }
+
+    function disableSyncButton() {
+        Form.Element.disable('generate_button');
+        $('generate_button').addClassName('disabled');
+    }
+
+    function checkStatus() {
+        u = new Ajax.PeriodicalUpdater('', '<?php echo $this->getAjaxStatusUpdateUrl() ?>', {
+            method:     'get',
+            frequency:  5,
+            loaderArea: false,
+
+            onSuccess: function(transport) {
+                var response;
+
+                try {
+                    response = eval('(' + transport.responseText + ')');
+                    if (response.state == '<?php echo Diglin_Username_Model_Generate_Flag::STATE_RUNNING ?>'
+                        && response.message
+                    ) {
+                        if ($('sync_span').hasClassName('no-display')) {
+                            $('sync_span').removeClassName('no-display');
+                        }
+                        $('sync_message_span').update(response.message);
+
+                    } else {
+                        u.stop();
+                        //$('sync_span').addClassName('no-display');
+                        $('generate_process_spinner').addClassName('no-display');
+
+                        if (response.state == '<?php echo Diglin_Username_Model_Generate_Flag::STATE_NOTIFIED ?>') {
+                            if (response.message) {
+                                if ($('sync_span').hasClassName('no-display')) {
+                                    $('sync_span').removeClassName('no-display');
+                                }
+                                $('sync_message_span').update(response.message);
+                            }
+                            if (response.has_errors) {
+                                enableSyncButton();
+                            }
+                        }
+                    }
+                } catch (e) {
+                    response = {};
+                }
+            }
+        });
+    }
+
+    function generate() {
+        params = {}
+
+        new Ajax.Request('<?php echo $this->getAjaxSyncUrl() ?>', {
+            parameters:     params,
+            loaderArea:     false,
+            asynchronous:   true
+        });
+
+        window.setTimeout('checkStatus()', 2011);
+        disableSyncButton();
+    }
+//]]>
+</script>
+
+<?php echo $this->getButtonHtml(); ?><span class="sync-indicator no-display" id="sync_span"><img id="generate_process_spinner" alt="<?php echo $this->__('Generate') ?>" style="margin:0 5px" src="<?php echo $this->getSkinUrl('images/process_spinner.gif') ?>"/><span id="sync_message_span"></span></span>

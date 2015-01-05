@@ -23,7 +23,7 @@
             <sort_order>400</sort_order>
         </diglin>
     </tabs>
-    
+
     <sections>
         <username translate="label" module="username">
             <label>Username</label>
@@ -43,91 +43,101 @@
                 </hint>
                 <general model="username" translate="label">
                     <label>General configuration</label>
-                        <frontend_type>text</frontend_type>
-                        <sort_order>1</sort_order>
-                        <show_in_default>1</show_in_default>
-                        <show_in_website>1</show_in_website>
-                        <show_in_store>1</show_in_store>
-                        <fields>
-                            <enabled model="username" translate="label comment">
-                                <label>Enable Username Support</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>adminhtml/system_config_source_yesno</source_model>
-                                <sort_order>1</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                                <comment><![CDATA[Enable username support in your store]]></comment>
-                            </enabled>
-                            <frontend model="username" translate="label comment">
-                                <label>Allow frontend edit</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>adminhtml/system_config_source_yesno</source_model>
-                                <sort_order>10</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <show_in_website>1</show_in_website>
-                                <show_in_store>1</show_in_store>
-                                <comment><![CDATA[Allow the customer to edit his username in "My Account"]]></comment>
-                            </frontend>
-                            <grid model="username" translate="label comment">
-                                <label><![CDATA[Display username in "Manage Customers" Grid]]></label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>adminhtml/system_config_source_yesno</source_model>
-                                <sort_order>20</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[Do you want to display the field 'Username' in the Manage Customer Grid?]]></comment>
-                            </grid>
-                            <max_length model="username" translate="label comment">
-                            	<label>Maximum length of the username</label>
-                                <frontend_type>text</frontend_type>
-                                <sort_order>30</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[What is the maximum length of the string username that you want to accept? By default, it's 30 characters ]]></comment>
-                            </max_length>
-                            <min_length model="username" translate="label comment">
-                            	<label>Minimum length of the username</label>
-                                <frontend_type>text</frontend_type>
-                                <sort_order>40</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[What is the minimum length of the string username that you want to accept? By default, it's 6 characters ]]></comment>
-                            </min_length>
-                            <input_validation model="username" translate="label comment">
-								<label>Input Validation</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>username/config_source_inputvalidation</source_model>
-                                <sort_order>50</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[What kind of username do you want to accept? You can set the value 'Default' which accept letters, digits and the special characters '_-' ]]></comment>                            	
-                            </input_validation>
-                            <input_validation_custom model="username" translate="label comment">
-                                <label>Custom Input Validation</label>
-                                <frontend_type>text</frontend_type>
-                                <sort_order>60</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[Provide here a PCRE regex. e.g. <strong>/^[\w-]*$/</strong>. More info at <a href="http://php.net/manual/en/reference.pcre.pattern.syntax.php">PHP Manual</a>]]></comment>
-                                <depends>
-                                    <input_validation>custom</input_validation>
-                                </depends>
-                            </input_validation_custom>
-                            <input_validation_custom_message model="username" translate="label comment">
-                                <label>Custom Input Validation - Error Message</label>
-                                <frontend_type>text</frontend_type>
-                                <sort_order>70</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[Message to show to the user in case of error</a>]]></comment>
-                                <depends>
-                                    <input_validation>custom</input_validation>
-                                </depends>
-                            </input_validation_custom_message>
-                            <case_sensitive model="username" translate="label comment">
-                                 <label>Case Sensitive Username</label>
-                                <frontend_type>select</frontend_type>
-                                <source_model>adminhtml/system_config_source_yesno</source_model>
-                                <sort_order>80</sort_order>
-                                <show_in_default>1</show_in_default>
-                                <comment><![CDATA[Do you want to make the username case sensitive? If not case sensitive, the username will be saved in lowercase. The idea to save in lowercase is to not irritate the user in case he provides a wrong username case.]]></comment>
-                            </case_sensitive>
-                        </fields>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled model="username" translate="label comment">
+                            <label>Enable Username Support</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable username support in your store]]></comment>
+                        </enabled>
+                        <frontend model="username" translate="label comment">
+                            <label>Allow frontend edit</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Allow the customer to edit his username in "My Account"]]></comment>
+                        </frontend>
+                        <grid model="username" translate="label comment">
+                            <label><![CDATA[Display username in "Manage Customers" Grid]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[Do you want to display the field 'Username' in the Manage Customer Grid?]]></comment>
+                        </grid>
+                        <max_length model="username" translate="label comment">
+                            <label>Maximum length of the username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[What is the maximum length of the string username that you want to accept? By default, it's 30 characters ]]></comment>
+                        </max_length>
+                        <min_length model="username" translate="label comment">
+                            <label>Minimum length of the username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[What is the minimum length of the string username that you want to accept? By default, it's 6 characters ]]></comment>
+                        </min_length>
+                        <input_validation model="username" translate="label comment">
+                            <label>Input Validation</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>username/config_source_inputvalidation</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[What kind of username do you want to accept? You can set the value 'Default' which accept letters, digits and the special characters '_-' ]]></comment>
+                        </input_validation>
+                        <input_validation_custom model="username" translate="label comment">
+                            <label>Custom Input Validation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[Provide here a PCRE regex. e.g. <strong>/^[\w-]*$/</strong>. More info at <a href="http://php.net/manual/en/reference.pcre.pattern.syntax.php">PHP Manual</a>]]></comment>
+                            <depends>
+                                <input_validation>custom</input_validation>
+                            </depends>
+                        </input_validation_custom>
+                        <input_validation_custom_message model="username" translate="label comment">
+                            <label>Custom Input Validation - Error Message</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[Message to show to the user in case of error</a>]]></comment>
+                            <depends>
+                                <input_validation>custom</input_validation>
+                            </depends>
+                        </input_validation_custom_message>
+                        <case_sensitive model="username" translate="label comment">
+                            <label>Case Sensitive Username</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[Do you want to make the username case sensitive? If not case sensitive, the username will be saved in lowercase. The idea to save in lowercase is to not irritate the user in case he provides a wrong username case.]]></comment>
+                        </case_sensitive>
+                        <generate>
+                            <label>Generate username</label>
+                            <comment><![CDATA[Generate a username for each customer who doesn't already have one.]]></comment>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>username/adminhtml_config_source_generate</frontend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </generate>
+                    </fields>
                 </general>
             </groups>
         </username>

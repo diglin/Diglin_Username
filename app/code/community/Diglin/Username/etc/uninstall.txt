@@ -1,4 +1,5 @@
 app/code/community/Diglin/Username app/code/community/Diglin/Username
+app/design/adminhtml/default/default/template/username app/design/adminhtml/default/default/template/username
 app/design/frontend/base/default/layout/username.xml app/design/frontend/base/default/layout/username.xml
 app/design/frontend/base/default/template/username app/design/frontend/base/default/template/username
 app/etc/modules/Diglin_Username.xml app/etc/modules/Diglin_Username.xml
