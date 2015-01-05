@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Diglin GmbH
+ *
+ * @category    Diglin
+ * @package     Diglin_Username
+ * @author      Sylvain Rayé <support@diglin.com>
+ * @copyright   Copyright (c) 2008-2015 Diglin GmbH - Switzerland (http://www.diglin.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<layout version="2.0.0">
+	
+	<customer_account_index>
+        <reference name="customer_account_dashboard">
+            <block type="core/template" name="username_information" as="info1">
+                <action method="setTemplate" ifconfig="username/general/enabled">
+                    <template>username/customer/account/dashboard/info.phtml</template>
+                </action>
+            </block>
+        </reference>
+	</customer_account_index>
+	
+	<customer_account_login>
+		<reference name="customer_form_login">
+            <action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/login.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/customer/form/login.phtml</template></action>
+		</reference>
+	</customer_account_login>
+	
+	<customer_account_edit>
+		<reference name="customer_edit">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/edit.phtml</template></action>
+		</reference>
+	</customer_account_edit>
+	
+	<customer_account_create>
+		<reference name="customer_form_register">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/register.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/customer/form/register.phtml</template></action>
+		</reference>
+	</customer_account_create>
+
+    <customer_account_forgotpassword>
+        <reference name="forgotPassword">
+            <action method="setTemplate" ifconfig="username/general/enabled"><template>username/customer/form/forgotpassword.phtml</template></action>
+        </reference>
+    </customer_account_forgotpassword>
+
+	<checkout_onepage_index>
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/checkout/onepage/billing.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/checkout/onepage/billing.phtml</template></action>
+		</reference>
+		<reference name="checkout.onepage.login">
+			<action method="setTemplate" ifconfig="username/general/enabled"><template>username/checkout/onepage/login.phtml</template></action>
+            <action method="setTemplate" helper="username/data/isPersistentMustBeEnabled"><template>username/persistent/checkout/onepage/login.phtml</template></action>
+		</reference>
+	</checkout_onepage_index>
+</layout>

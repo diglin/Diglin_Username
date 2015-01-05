@@ -1,0 +1,178 @@
+<_>
+   <form_key>T4nWNkYfrMPqx0Y0</form_key>
+   <name>Diglin_Username</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+   </version_ids>
+   <summary>Create and login to an account thanks to a username AND email address.&amp;#xD;
+Allow to disable an account from backend. The user will be blocked if the option in the customer backend is set to no</summary>
+   <description>This module allows you to:&amp;#xD;
+&amp;#xD;
+- login with a username or email address. it can be done from frontend during checkout or getting access to the customer account&amp;#xD;
+- Username can have letters, digits, &apos;_-&apos; but no other special characters&amp;#xD;
+- Username length is from 6 until 30 characters possible&amp;#xD;
+- save a username from frontend (register account or checkout process) or from backend by editing a customer account&amp;#xD;
+- check that the username doesn&apos;t already exists&amp;#xD;
+- deactivate temporary customer account from Customer Management page (bonus functionnality). The user will be blocked if the option in the customer backend is set to no.&amp;#xD;
+- The default template override some customer and checkout views to adapt display for login pages, checkout process and account edition in frontend. If you have a customized template, please check the layout file username.xml and compare with your template to use or adapt to your situation.&amp;#xD;
+&amp;#xD;
+Compatible Magento version &amp;gt;= 1.4.2 until 1.9.1</description>
+   <license>OSL v3.0</license>
+   <license_uri>http://www.opensource.org/licenses/osl-3.0.php</license_uri>
+   <version>2.2.1</version>
+   <stability>stable</stability>
+   <notes>e694fcb Add custom input validation
+85a0f51 Update translations
+1ca6441 Update Copyright
+799fc1b [FIX] prevent to save username when it&apos;s not allowed from configuration
+55ab34e make the module compatible with MAgento 1.8, change copyright, move column logic for customer grid into observer
+6c49218 Merge pull request #7 from gdhnz/master
+bad7445 Add permission &quot;allow everything&quot; to adminhtml.xml to resolve admin 404 for the extension config screen under CE 1.8
+fa712c7 Code factoring
+6c603d8 fix comment typo
+5f5fe14 change to version 2.0.7
+41e58bb fix bad condition test in case of not found $customerId in Form.php. Use case, checkout process with already logged in customer.
+b8e71c7 add submodule MageTrashApp
+757a3e2 Update README.md
+48244a4 add version 2.0.6
+e9453ff generate correctly username for old customers while installing the module
+f422067 Fix to the controller forgotPassword
+fd71c66 change version to 2.0.5
+67bf362 cleanup some test
+adc2bb5 add fix when customer information are saved from backend, add observer fix for collection (do not know yet if it resolved hte problem of a user who contacted me about grid 
+1c0c07f change version number
+4ab072f fix bad merging
+cd2bb86 Update README.md
+fa3f821 Update composer.json
+d10136e add dependency suggestion
+ff053ba remove todo task
+b300aa0 Fix a problem with sql data install with empty select query
+5b179b5 add uninstall process for module MageTrashApp
+ce428e9 add composer.json
+d93cc55 merge observer
+29d4c21 add condition to test if attribute username model exists before to save the config
+14acf45 Update README.md
+21f72b7 add missing column for sales_flat_order table
+612052d improve checkout process as a guest (no complain that username is a required field when you are a guest), fix issue with install data script
+aafb0be split template depending on the magento version, add missing template for use cases using persisten customer feature
+ce9245b Fix or improve form model while saving new customer data
+42444f3 Improve test if shop owner change the account sharing options
+4d10edb Improve Username Module: setup is now completly rewritten for Magento 1.7, add username for forgotten password, allow now to disable the feature from configuration page, ch
+c6b7250 add customer ID fix depending on the context
+788e656 add optionable strtolower username
+49cb18d add optionable strtolower username
+dff09e0 Add modman and instruction to use it
+2d6b6c8 Merge pull request #1 from clst/master
+1d143e9 fix: weird quote characters in german language file
+9cbf4a2 add: can now update is_active for existing customers
+dfa9cc6 Fix some bug and add a way to import is_active attribute
+60c7143 Update README.md
+24afad2 add gitignore and license files
+</notes>
+   <authors>
+      <name>
+         <name>diglin</name>
+      </name>
+      <user>
+         <user>diglin</user>
+      </user>
+      <email>
+         <email>sly@diglin.com</email>
+      </email>
+   </authors>
+   <depends_php_min>5.2.9</depends_php_min>
+   <depends_php_max>6.0.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+         </name>
+         <channel>
+            <channel/>
+         </channel>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+         <files>
+            <files>    </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+         </name>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magelocal</target>
+         <target>magecommunity</target>
+         <target>mageetc</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+      </target>
+      <path>
+         <path/>
+         <path>Diglin/Username</path>
+         <path>modules/Diglin_Username.xml</path>
+         <path>adminhtml/default/default/template/username</path>
+         <path>frontend/base/default/layout/username.xml</path>
+         <path>frontend/base/default/template/username</path>
+         <path>de_DE/Diglin_Username.csv</path>
+         <path>en_GB/Diglin_Username.csv</path>
+         <path>en_US/Diglin_Username.csv</path>
+         <path>fr_FR/Diglin_Username.csv</path>
+      </path>
+      <type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>file</type>
+         <type>file</type>
+         <type>file</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+</_>
