@@ -1,5 +1,5 @@
 <_>
-   <form_key>T4nWNkYfrMPqx0Y0</form_key>
+   <form_key>8g6kBx67uMfaKToj</form_key>
    <name>Diglin_Username</name>
    <channel>community</channel>
    <version_ids>
@@ -20,9 +20,13 @@ Allow to disable an account from backend. The user will be blocked if the option
 Compatible Magento version &amp;gt;= 1.4.2 until 1.9.1</description>
    <license>OSL v3.0</license>
    <license_uri>http://www.opensource.org/licenses/osl-3.0.php</license_uri>
-   <version>2.2.1</version>
+   <version>2.2.2</version>
    <stability>stable</stability>
-   <notes>e694fcb Add custom input validation
+   <notes>Version 2.2.2
+- Fix issue with input validation (any kind of input was possible)
+
+Version 2.0.*
+e694fcb Add custom input validation
 85a0f51 Update translations
 1ca6441 Update Copyright
 799fc1b [FIX] prevent to save username when it&apos;s not allowed from configuration
@@ -98,7 +102,7 @@ dfa9cc6 Fix some bug and add a way to import is_active attribute
             <max/>
          </max>
          <files>
-            <files>    </files>
+            <files>     </files>
          </files>
       </package>
       <extension>
