@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Diglin GmbH
  *
@@ -8,14 +9,12 @@
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/osl-3.0.php
-
  *
  * @category    Diglin
  * @package     Diglin_Username
  * @copyright   Copyright (c) 2008-2015 Diglin GmbH - Switzerland (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
 {
     /**
@@ -23,14 +22,14 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
      *
      * Event: customer_customer_authenticated
      *
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
      * @throws Mage_Core_Exception
      */
     public function isActive($observer)
-    {   
+    {
         $customer = $observer->getEvent()->getModel();
         // Add the inactive option
-        if($customer->getIsActive () != '1' ){
+        if ($customer->getIsActive() != '1') {
             throw new Mage_Core_Exception(Mage::helper('customer')->__('This account is disabled.'), 0);
         }
     }
@@ -40,9 +39,9 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
      *
      * Event: eav_collection_abstract_load_before
      *
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
      */
-    public function addAttributeToCollection ($observer)
+    public function addAttributeToCollection($observer)
     {
         /* @var $collection Mage_Eav_Model_Entity_Collection_Abstract */
         $collection = $observer->getEvent()->getCollection();
@@ -52,52 +51,53 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
         }
 
     }
-    
+
     /**
      * Change the attribute of username after the configuration
      * has been changed
      *
      * Event: admin_system_config_changed_section_username
      *
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
      */
-    public function changeEavAttribute (Varien_Event_Observer $observer)
+    public function changeEavAttribute(Varien_Event_Observer $observer)
     {
         $minLength = Mage::getStoreConfig('username/general/min_length');
         $maxLength = Mage::getStoreConfig('username/general/max_length');
         $inputValidation = Mage::getStoreConfig('username/general/input_validation');
 
-        if($minLength > $maxLength) {
+        if ($minLength > $maxLength) {
             Mage::throwException(
-                Mage::helper('username')->__('Sorry but you cannot set a minimum length value %s bigger than the maximum length value %s. Please, change the values.',
-                $minLength,
-                $maxLength)
+                Mage::helper('username')->
+                __('Sorry but you cannot set a minimum length value %s bigger than the maximum length value %s. Please, change the values.',
+                    $minLength,
+                    $maxLength)
             );
         }
 
         /* @var $attributeUsernameModel Mage_Customer_Model_Attribute */
         $attributeUsernameModel = Mage::getModel('customer/attribute')->loadByCode('customer', 'username');
-        if($attributeUsernameModel->getId()) {
-			$rules = $attributeUsernameModel->getValidateRules();
-			$rules['max_text_length'] = $maxLength;
-			$rules['min_text_length'] = $minLength;
-		
-			if($inputValidation != 'default' && $inputValidation != 'custom') {
-				$rules['input_validation'] = $inputValidation;
-			}else {
-				$rules['input_validation'] = '';
-			}
-		
-			$attributeUsernameModel->setValidateRules($rules);
-			$attributeUsernameModel->save();
+        if ($attributeUsernameModel->getId()) {
+            $rules = $attributeUsernameModel->getValidateRules();
+            $rules['max_text_length'] = $maxLength;
+            $rules['min_text_length'] = $minLength;
+
+            if ($inputValidation != 'default' && $inputValidation != 'custom') {
+                $rules['input_validation'] = $inputValidation;
+            } else {
+                $rules['input_validation'] = '';
+            }
+
+            $attributeUsernameModel->setValidateRules($rules);
+            $attributeUsernameModel->save();
         }
     }
 
     /**
      * Event
-     * - block_html_before
+     * - core_block_abstract_to_html_before
      *
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
      */
     public function addUsernameColumn(Varien_Event_Observer $observer)
     {
@@ -115,7 +115,7 @@ class Diglin_Username_Model_Observer extends Mage_Customer_Model_Observer
                 'username',
                 array(
                     'header' => Mage::helper('username')->__('Username'),
-                    'index'  => 'username'
+                    'index' => 'username'
                 ),
                 'email'
             );
