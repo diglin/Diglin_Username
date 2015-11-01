@@ -19,7 +19,7 @@
 <config>
     <modules>
         <Diglin_Username>
-            <version>2.2.2</version>
+            <version>2.2.3</version>
         </Diglin_Username>
     </modules>
     <default>
@@ -186,16 +186,13 @@
 
     <admin>
         <routers>
-            <username>
-                <use>admin</use>
-                <args>
-                    <module>Diglin_Username</module>
-                    <frontName>username</frontName>
-                    <modules>
-                        <Diglin_Username before="Mage_Adminhtml">Diglin_Username_Adminhtml</Diglin_Username>
-                    </modules>
-                </args>
-            </username>
+            <adminhtml>
+				<args>
+					<modules>
+						<username before="Mage_Adminhtml">Diglin_Username_Adminhtml</username>
+					</modules>
+				</args>
+			</adminhtml>
         </routers>
     </admin>
 

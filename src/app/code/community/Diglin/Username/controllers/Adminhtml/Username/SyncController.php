@@ -10,9 +10,9 @@
  */
 
 /**
- * Class Diglin_Username_Adminhtml_SyncController
+ * Class Diglin_Username_Adminhtml_Username_SyncController
  */
-class Diglin_Username_Adminhtml_SyncController extends Mage_Adminhtml_Controller_Action
+class Diglin_Username_Adminhtml_Username_SyncController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Return acl synchronize singleton
@@ -84,6 +84,7 @@ class Diglin_Username_Adminhtml_SyncController extends Mage_Adminhtml_Controller
                 unset($customer['email']);
                 unset($customer['value_id']);
 
+                // I know - direct sql query here is not good but there is no DBA for replace query
                 $readConnection->query('REPLACE INTO '
                     . $readConnection->getTableName('customer_entity_varchar')
                     . ' SET entity_id = :entity_id, entity_type_id = :entity_type_id, attribute_id = :attribute_id, value = :value',

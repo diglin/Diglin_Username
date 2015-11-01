@@ -53,7 +53,7 @@ class Diglin_Username_Block_Adminhtml_Config_Source_Generate extends Mage_Adminh
      */
     public function getAjaxSyncUrl()
     {
-        return Mage::getSingleton('adminhtml/url')->getUrl('username/sync/generate');
+        return Mage::getSingleton('adminhtml/url')->getUrl('*/username_sync/generate');
     }
 
     /**
@@ -63,7 +63,7 @@ class Diglin_Username_Block_Adminhtml_Config_Source_Generate extends Mage_Adminh
      */
     public function getAjaxStatusUpdateUrl()
     {
-        return Mage::getSingleton('adminhtml/url')->getUrl('username/sync/syncstatus');
+        return Mage::getSingleton('adminhtml/url')->getUrl('*/username_sync/syncstatus');
     }
 
     /**

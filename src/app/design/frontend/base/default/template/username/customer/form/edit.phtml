@@ -18,8 +18,8 @@
 <div class="page-title">
     <h1><?php echo $this->__('Edit Account Information') ?></h1>
 </div>
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate">
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off">
     <div class="fieldset">
         <?php echo $this->getBlockHtml('formkey')?>
         <h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
@@ -31,14 +31,14 @@
             	<div class="field">
                     <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
                     <div class="input-box">
-                        <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
+                        <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Email Address')) ?>" class="input-text required-entry validate-email" />
                     </div>
                 </div>
                 <div class="field">
                     <label for="username" class="required"><em>*</em><?php echo Mage::helper('customer')->__('Username') ?></label>
                     <div class="input-box">
                     <?php if(Mage::getStoreConfigFlag('username/general/frontend')) : ?>
-                        <input type="text" name="username" id="username" value="<?php echo $this->escapeHtml($this->getCustomer()->getUsername()) ?>" title="<?php echo Mage::helper('customer')->__('Username') ?>" class="input-text required-entry" />
+                        <input type="text" name="username" id="username" value="<?php echo $this->escapeHtml($this->getCustomer()->getUsername()) ?>" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('customer')->__('Username')) ?>" class="input-text required-entry" />
                     <?php else: ?>
                         <input type="hidden" name="username" id="username" value="<?php echo $this->escapeHtml($this->getCustomer()->getUsername()) ?>"/>
                         <?php echo $this->escapeHtml($this->getCustomer()->getUsername()); ?>
@@ -59,7 +59,7 @@
             <li><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
         <?php endif ?>
             <li class="control">
-                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Change Password')) ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
             </li>
         </ul>
     </div>
@@ -71,20 +71,20 @@
                 <div class="input-box">
                     <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
                     <input type="text" class="input-text no-display" name="dummy" id="dummy" />
-                    <input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
+                    <input type="password" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Current Password')) ?>" class="input-text" name="current_password" id="current_password" />
                 </div>
             </li>
             <li class="fields">
                 <div class="field">
                     <label for="password" class="required"><em>*</em><?php echo $this->__('New Password') ?></label>
                     <div class="input-box">
-                        <input type="password" title="<?php echo $this->__('New Password') ?>" class="input-text validate-password" name="password" id="password" />
+                        <input type="password" title="<?php echo Mage::helper('core')->quoteEscape($this->__('New Password')) ?>" class="input-text validate-password" name="password" id="password" />
                     </div>
                 </div>
                 <div class="field">
                     <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm New Password') ?></label>
                     <div class="input-box">
-                        <input type="password" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
+                        <input type="password" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Confirm New Password')) ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
                     </div>
                 </div>
             </li>
@@ -93,7 +93,7 @@
     <div class="buttons-set">
         <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
-        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+        <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Save')) ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
     </div>
 </form>
 <script type="text/javascript">
