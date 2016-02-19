@@ -53,7 +53,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
         $errors = parent::validateData($data);
 
         // Prevent to change/save the username if it is not allowed on the frontend to change the username
-        if (!Mage::getStoreConfigFlag('username/general/frontend') && !Mage::app()->getStore()->isAdmin()) {
+        if (!Mage::getStoreConfigFlag('username/general/frontend') && !Mage::app()->getStore()->isAdmin() && $errors !== true) {
             return $errors;
         }
 
@@ -75,7 +75,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
             }
 
             // Prevent possible errors
-            if (empty($customerId)) {
+            if (empty($customerId) && $errors !== true) {
                 return $errors;
             }
 
