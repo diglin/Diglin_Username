@@ -50,10 +50,39 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
      */
     public function validateData(array $data)
     {
+        $request = Mage::app()->getRequest();
+        $errors = array();
+
+        if ($request->isXMLHttpRequest()) {
+            $customerData = array();
+
+            /** @var $customer Mage_Customer_Model_Customer */
+            $customer = Mage::registry('current_customer');
+            if (is_null($customer)) {
+                $customer = Mage::getModel('customer/customer');
+            }
+
+            /** Check if registration from checkout page */
+            if ($request->getParam('checkout_page_registration', false)) {
+                $formCode = 'checkout_register';
+            } else {
+                $formCode = 'customer_account_create';
+            }
+
+            $this->setFormCode($formCode)->setEntity($customer);
+
+            $customerData = $this->extractData($request);
+            $data = array_merge($data, $customerData);
+
+            if ($request->getParam('is_subscribed', false)) {
+                $customer->setIsSubscribed(1);
+            }
+        }
+
         $errors = parent::validateData($data);
 
         // Prevent to change/save the username if it is not allowed on the frontend to change the username
-        if (!Mage::getStoreConfigFlag('username/general/frontend') && !Mage::app()->getStore()->isAdmin()) {
+        if (!Mage::getStoreConfigFlag('username/general/frontend') && !Mage::app()->getStore()->isAdmin() && $errors !== true && !empty($errors)) {
             return $errors;
         }
 
@@ -75,7 +104,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
             }
 
             // Prevent possible errors
-            if (empty($customerId)) {
+            if (empty($customerId) && $errors !== true && !empty($errors)) {
                 return $errors;
             }
 
@@ -111,7 +140,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 $validate = '/^*$/';
                 switch ($inputValidation) {
                     case 'default':
-                        $validate = '/^[\w-]*$/';
+                        $validate = '/^[\w\-_]*$/';
                         break;
                     case 'custom':
                         $validate = Mage::getStoreConfig('username/general/input_validation_custom');
