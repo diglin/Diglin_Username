@@ -137,7 +137,7 @@ class Diglin_Username_Model_Form extends Mage_Customer_Model_Form
                 $errors = array_merge($errors, array($message));
             }
         }
-        if (count($errors) == 0) {
+        if (is_array($errors) && count($errors) == 0) {
             return true;
         }
         return $errors;
